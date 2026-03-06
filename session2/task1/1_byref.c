@@ -20,8 +20,16 @@ int main(void) {
   add_point(grid, x, y);
   draw_grid(grid);
 
-  // if you want to 'reset' and remove things, you can re-init it to clear
-  grid = initialize_grid();
+  move_point(&x, &y, 5, 5);
+  printf("X: %i, Y: %i\n", x, y);
+  draw_grid(grid);
+
+  reflect_point(&x, &y, 'X');
+  printf("X: %i, Y: %i\n", x, y);
+  draw_grid(grid);
+
+  swap_coords(&x, &y);
+  printf("X: %i, Y: %i\n", x, y);
   draw_grid(grid);
 
   return 0;
@@ -38,6 +46,8 @@ int main(void) {
 void move_point(int *x, int *y, int dx, int dy) {
   // update the coordinates by the given delta
   // i.e. (x+dx, y+dy)
+  *x += dx;
+  *y += dy;
 }
 
 /**
@@ -51,6 +61,8 @@ void reflect_point(int *x, int *y, char axis) {
   // reflect the point across the given axis
   // e.g. reflect (7,3) across the X axis -> (7,-3)
   // across the y axis -> (-7, 3)
+  if (axis == 'X') *y *= -1;
+  else *x *= -1;
 }
 
 /**
@@ -61,6 +73,10 @@ void reflect_point(int *x, int *y, char axis) {
  */
 void swap_coords(int *x, int *y) {
   // swap the x and y values of a coordinate
+  // e.g. (7,3) -> (3,7)
+  int temp = *x;
+  *x = *y;
+  *y = temp;
 }
 
 /**
