@@ -7,7 +7,7 @@ unsigned char **allocateArray(int height, int width);
 unsigned char **read(unsigned char *fn, int *a, int *b);
 void printImage(unsigned char **p, int a, int b);
 
-int main(int argc, unsigned char **argv) {
+int main(int argc, char **argv) {
   if (argc != 2) {
     printf("Usage: ./pgmTools image_path\n");
     return 0;
