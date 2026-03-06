@@ -18,7 +18,7 @@ int is_palindrome(const char *str);
  * EXAMPLE TEST - Students should follow this pattern
  * ============================================================ */
 
-void test_obvious_palindrome(void) {
+void test_palindrome(void) {
     TEST_CHECK(is_palindrome("racecar") == 1);
     TEST_MSG("Expected 'racecar' to be a palindrome");
 }
@@ -38,6 +38,20 @@ void test_obvious_palindrome(void) {
  * 2. Use TEST_MSG("message") to explain what went wrong if it fails
  * ============================================================ */
 
+void test_single_char(void) {
+    TEST_CHECK(is_palindrome("a") == 1);
+    TEST_MSG("Expected 'a' to be a palindrome");
+}
+
+void test_empty_string(void) {
+    TEST_CHECK(is_palindrome("") == 1);
+    TEST_MSG("Expected empty string to be a palindrome");
+}
+
+void test_non_palindrome(void) {
+    TEST_CHECK(is_palindrome("hello") == 0);
+    TEST_MSG("Expected 'hello' to not be a palindrome");
+}
 
 
 /* ============================================================
@@ -47,11 +61,10 @@ void test_obvious_palindrome(void) {
  * Must end with { NULL, NULL }
  * ============================================================ */
 TEST_LIST = {
-    { "obvious palindrome (racecar)", test_obvious_palindrome },
-    /* TODO: Add your tests here, e.g.:
-     * { "single character", test_single_char },
-     * { "empty string", test_empty_string },
-     */
+    { "check palindrome (racecar)", test_palindrome },
+    { "single character", test_single_char },
+    { "empty string", test_empty_string },
+    { "non-palindrome (hello)", test_non_palindrome },
     { NULL, NULL }
 };
 
