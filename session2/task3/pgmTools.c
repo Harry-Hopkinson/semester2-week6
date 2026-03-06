@@ -1,20 +1,22 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int getUserInput(unsigned char *message);
+int getUserInput(char *message);
 void menu(void);
-unsigned char **allocateArray(int height, int width);
-unsigned char **read(unsigned char *fn, int *a, int *b);
-void printImage(unsigned char **p, int a, int b);
+char **allocateArray(int height, int width);
+char **read(char *fn, int *a, int *b);
+void printImage(char **p, int a, int b);
 
-int main(int argc, char **argv) {
-  if (argc != 2) {
-    printf("Usage: ./pgmTools image_path\n");
+int main(int argc, char **argv)
+{
+  if (argc != 2)
+  {
+    printf("Usage: %s image_path\n", argv[0]);
     return 0;
   }
 
   int a, b;
-  unsigned char **i;
+  char **i;
   i = read(argv[1], &a, &b);
 
   int c = -1;
@@ -44,56 +46,66 @@ int main(int argc, char **argv) {
   } while (1);
 }
 
-int getUserInput(unsigned char *message) {
-  unsigned char buffer[100];
+int getUserInput(char *message)
+{
+  char buffer[100];
   int choice;
+
   printf("%s: ", message);
   fgets(buffer, 100, stdin);
+
   int check = sscanf(buffer, "%d", &choice);
-  if (!check) {
-    return -1;
-  }
+  if (!check) return -1;
   return choice;
 }
 
-void menu(void) {
+void menu(void)
+{
   printf("1 - View PGM Image\n");
   printf("2 - Invert Image\n");
   printf("3 - Rotate Image\n");
   printf("4 - Scale Image\n");
-  printf("5 - quit\n");
+  printf("5 - Quit\n");
 }
 
-unsigned char **allocateArray(int height, int width) {
-  unsigned char **array = calloc(height, sizeof(unsigned char *));
-  for (int i = 0; i < height; i++) {
-    array[i] = calloc(width, sizeof(unsigned char));
-  }
+char **allocateArray(int height, int width)
+{
+  char **array = calloc(height, sizeof(char *));
+  for (int i = 0; i < height; i++)
+    array[i] = calloc(width, sizeof(char));
 
   return array;
 }
 
-unsigned char **read(unsigned char *fn, int *a, int *b) {
-  unsigned char temp[10];
+char **read(char *fn, int *a, int *b)
+{
+  char temp[10];
   int h, w;
+
   FILE *f = fopen(fn, "r");
   fscanf(f, "%s ", temp);
   fscanf(f, "%d %d", &h, &w);
   fscanf(f, "%s ", temp);
-  unsigned char **p = allocateArray(h, w);
-  for (int i = 0; i < h; i++) {
-    for (int j = 0; j < w; j++) {
+
+  char **p = allocateArray(h, w);
+  for (int i = 0; i < h; i++)
+  {
+    for (int j = 0; j < w; j++)
+    {
       fscanf(f, "%hhd", &p[i][j]);
     }
   }
+
   *a = h;
   *b = w;
   return p;
 }
 
-void printImage(unsigned char **p, int a, int b) {
-  for (int i = 0; i < a; i++) {
-    for (int j = 0; j < b; j++) {
+void printImage(char **p, int a, int b) {
+  for (int i = 0; i < a; i++)
+  {
+    for (int j = 0; j < b; j++)
+    {
       printf("%d%s", p[i][j],
              (p[i][j] < 100) ? (p[i][j] < 10) ? "   " : "  " : " ");
     }
