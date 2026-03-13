@@ -185,7 +185,8 @@ int find_max(int *arr, int n, int *index)
  * https://github.com/mity/acutest
  * ============================================================ */
 
-void test_add_values(void) {
+void test_add_values(void)
+{
   TEST_CHECK(add_values(3, 4) == 7);
   TEST_MSG("Expected add_values(3, 4) = 7");
 
@@ -199,7 +200,8 @@ void test_add_values(void) {
   TEST_MSG("Expected add_values(-3, -7) = -10");
 }
 
-void test_swap_values(void) {
+void test_swap_values(void)
+{
   int a, b;
 
   a = 5;
@@ -224,7 +226,8 @@ void test_swap_values(void) {
            a, b);
 }
 
-void test_sum_array(void) {
+void test_sum_array(void)
+{
   int arr1[] = {1, 2, 3, 4, 5};
   TEST_CHECK(sum_array(arr1, 5) == 15);
   TEST_MSG("Expected sum_array([1,2,3,4,5], 5) = 15");
@@ -242,7 +245,8 @@ void test_sum_array(void) {
   TEST_MSG("Expected sum_array([0,0,0,0], 4) = 0");
 }
 
-void test_reverse_array(void) {
+void test_reverse_array(void)
+{
   int arr1[] = {1, 2, 3, 4, 5};
   int exp1[] = {5, 4, 3, 2, 1};
   reverse_array(arr1, 5);
@@ -265,7 +269,8 @@ void test_reverse_array(void) {
   TEST_MSG("Expected reverse_array([42]) = [42] (single element unchanged)");
 }
 
-void test_average(void) {
+void test_average(void)
+{
   int arr1[] = {1, 2, 3, 4, 5};
   double avg1 = average(arr1, 5);
   TEST_CHECK(avg1 >= 2.99 && avg1 <= 3.01);
@@ -282,7 +287,8 @@ void test_average(void) {
   TEST_MSG("Expected average([10,20,30]) = 20.0, got %f", avg3);
 }
 
-void test_find_max(void) {
+void test_find_max(void)
+{
   int arr1[] = {3, 7, 2, 9, 4};
   int idx1;
   int max1 = find_max(arr1, 5, &idx1);
@@ -309,7 +315,8 @@ void test_find_max(void) {
  * TEST LIST - Acutest discovers tests from this list
  * ============================================================ */
 
-TEST_LIST = {
+TEST_LIST =
+{
     {"add_values", test_add_values},
     {"swap_values", test_swap_values},
     {"sum_array", test_sum_array},
